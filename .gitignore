@@ -1,2 +1,5 @@
-# Ignore all without extensions
+# Ignore all
+*
+
+# Un-ignore all without extensions
 !*.*
