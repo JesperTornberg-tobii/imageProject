@@ -1,19 +1,6 @@
+#include "header/transform.h"
 #include <iostream>
 #include <string>
-#include "opencv2/opencv.hpp"
-#include "opencv2/videoio.hpp"
-
-enum class TransformType { flip, rotate };
-enum class TransformDir { left, right, up, down };
-
-void tranformation(cv::Mat &src, cv::Mat &dst, TransformType type, TransformDir dir) {
-  /* TO DO: Create a transformation class with methods "flip" and "rotate" */
-
-  /* Flip code here */
-  cv::flip(src, dst, 0);
-
-
-}
 
 int main() {
   // Load image
@@ -32,12 +19,15 @@ int main() {
   cv::waitKey(0);
 
   // Display other image
-  cv::Mat img_mod;
-  tranformation(img, img_mod, TransformType::flip, TransformDir::left);
+  cv::Mat img_mod = img;
+  cv::Mat img_rot;
+  Transform transform(img_mod);
+  transform.rotate(rotationDir::left);
+  img_rot = transform.get_rotation();
 
   std::string window2 = "Display Other Window";
   cv::namedWindow(window2, cv::WINDOW_AUTOSIZE);
-  cv::imshow(window2, img_mod);
+  cv::imshow(window2, img_rot);
   cv::waitKey(0);
 
   return 0;
